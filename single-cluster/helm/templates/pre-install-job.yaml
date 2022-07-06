@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pre-install-job
+  annotations:
+    "helm.sh/hook": pre-install, pre-upgrade
+    "helm.sh/hook-delete-policy": hook-succeeded, hook-failed
+    "helm.sh/hook-weight": "5"
+spec:
+    spec:
+      containers:
+        - name: do-nothing
+          image: rancher/rancher-agent:v2.5.7
+          command:
+          - /bin/sh
+          - -c
+          - >
+            sleep 10
+      restartPolicy: OnFailure
