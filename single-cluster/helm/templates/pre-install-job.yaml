@@ -7,6 +7,11 @@ metadata:
     "helm.sh/hook-delete-policy": hook-succeeded, hook-failed
     "helm.sh/hook-weight": "5"
 spec:
+  template:
+    metadata:
+      name: pre-install-job
+      labels:
+        hello: world
     spec:
       containers:
         - name: do-nothing
